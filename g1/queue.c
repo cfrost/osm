@@ -50,6 +50,7 @@ Data dequeue(QNode** queue){
         printf("Queue is empty.\n");
         return NULL;
     }
+/*
     if(*queue == (*queue)->link){
         tempdata = (*queue)->content;
         free(*queue);
@@ -60,8 +61,16 @@ Data dequeue(QNode** queue){
         tempdata = temp->content;
         free(temp);
     }
-    //free((temp->content));
-    
+*/
+
+    temp = (*queue)->link;
+    tempdata = temp->content;
+    if(*queue == (*queue)->link){
+        *queue = NULL; 
+    } else {
+        (*queue)->link = temp->link; 
+    }
+    free(temp);
     return tempdata;
 }
 

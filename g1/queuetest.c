@@ -22,20 +22,25 @@ int main(){
     if((queue = (QNode**)malloc(sizeof(QNode**))) == NULL){
         out_of_memory();
     }
+    // Data Initializing
     int a = 1;
     int b = 2;
     int c = 3;
     a_data = &a;
     b_data = &b;
     c_data = &c;
+    
+    // Add elements to queue and print length
     enqueue(queue,a_data);
     printf("Total length is = %d\n",length(*queue));
     enqueue(queue,b_data);
     printf("Total length is = %d\n",length(*queue));
     enqueue(queue,c_data);
     printf("Total length is = %d\n",length(*queue));
+    // Apply sum function
     printf("Total sum of function const_one is = %d\n",sum(*queue,&const_one));
     printf("Total sum of function mult_one is = %d\n",sum(*queue,&mult_one));
+    // Remove element from queue and print lenth
     dequeue(queue);
     printf("Total length is = %d\n",length(*queue));
     dequeue(queue);
@@ -44,5 +49,6 @@ int main(){
     printf("Total length is = %d\n",length(*queue));
     dequeue(queue);
     printf("Total length is = %d\n",length(*queue));
+    
     free(queue);
 }
