@@ -7,6 +7,15 @@ static void out_of_memory() {
   exit(EXIT_FAILURE);
 }
 
+static int const_one(){
+    return 1;
+}
+
+static int mult_one(Data d){
+    return *(int*)d * 2;
+}
+
+
 int main(){
     Data a_data,b_data,c_data;
     QNode** queue;
@@ -25,10 +34,15 @@ int main(){
     printf("Total length is = %d\n",length(*queue));
     enqueue(queue,c_data);
     printf("Total length is = %d\n",length(*queue));
+    printf("Total sum of function const_one is = %d\n",sum(*queue,&const_one));
+    printf("Total sum of function mult_one is = %d\n",sum(*queue,&mult_one));
     dequeue(queue);
     printf("Total length is = %d\n",length(*queue));
     dequeue(queue);
     printf("Total length is = %d\n",length(*queue));
     dequeue(queue);
     printf("Total length is = %d\n",length(*queue));
+    dequeue(queue);
+    printf("Total length is = %d\n",length(*queue));
+    
 }

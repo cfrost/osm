@@ -9,18 +9,17 @@ static void out_of_memory() {
 
 /* return number of elements in queue */
 int length(QNode* queue){
-    int sum = 1;
+    int sum = 0;
     QNode* temp = queue;
     if (queue == NULL){
-        printf("JA\n");
+        printf("Queue is empty.\n");
         return 0;
     }
-    
-    while(temp->link != queue){
-        printf("sum is %d\n",sum);
+    do{
         sum++;
         temp = temp->link;
-    }
+    } while(temp != queue);
+    
     return sum;
 /*
     return sum(queue,&const_one);
@@ -35,29 +34,33 @@ void enqueue(QNode** queue, Data el){
     }
     newnode->content = el;
     if (*queue == NULL){
-        printf("NULL\n");
         newnode->link = newnode;
     } else {
         newnode->link = (*queue)->link;
         (*queue)->link = newnode;
-        printf("onemore\n");
     }
     *queue = newnode;
-    printf("Value = %d\n", ((*queue)));
 }
 
 /* remove and return front element */
 Data dequeue(QNode** queue){
     QNode* temp;
     Data tempdata;
-    temp = (*queue)->link;
-    (*queue)->link = temp->link; 
-    tempdata = temp->content;
+    if(*queue == NULL){
+        printf("Queue is empty.\n");
+        return NULL;
+    }
+    if(*queue == (*queue)->link){
+        tempdata = (*queue)->content;
+        *queue = NULL; 
+    } else {
+        temp = (*queue)->link;
+        (*queue)->link = temp->link; 
+        tempdata = temp->content;
+    }
     //free((temp->content));
     //free(temp);
-    if(*queue == (*queue)->link){
-        *queue = NULL; 
-    }
+    
     return tempdata;
 }
 
@@ -65,13 +68,16 @@ Data dequeue(QNode** queue){
 int sum(QNode* queue, int (*val)(Data)){
     int sum = 0;
     QNode* temp = queue;
-    if (queue == NULL)
+    if (queue == NULL){
+        printf("Queue is empty.\n");
         return 0;
-    do {
+    }
+    
+    do{
         sum = sum + (*val)(temp->content);
         temp = temp->link;
-    }
-    while(temp->link != queue);
+    } while(temp != queue);
+    
     return sum;
 }
 
