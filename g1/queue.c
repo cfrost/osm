@@ -52,14 +52,15 @@ Data dequeue(QNode** queue){
     }
     if(*queue == (*queue)->link){
         tempdata = (*queue)->content;
+        free(*queue);
         *queue = NULL; 
     } else {
         temp = (*queue)->link;
         (*queue)->link = temp->link; 
         tempdata = temp->content;
+        free(temp);
     }
     //free((temp->content));
-    //free(temp);
     
     return tempdata;
 }

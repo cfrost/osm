@@ -44,5 +44,5 @@ int main(){
     printf("Total length is = %d\n",length(*queue));
     dequeue(queue);
     printf("Total length is = %d\n",length(*queue));
-    
+    free(queue);
 }
