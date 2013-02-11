@@ -51,10 +51,13 @@ Data dequeue(QNode** queue){
     QNode* temp;
     Data tempdata;
     temp = (*queue)->link;
-    (*queue)->link = temp->link;
+    (*queue)->link = temp->link; 
     tempdata = temp->content;
-    free((temp->content));
+    //free((temp->content));
     //free(temp);
+    if(*queue == (*queue)->link){
+        *queue = NULL; 
+    }
     return tempdata;
 }
 
