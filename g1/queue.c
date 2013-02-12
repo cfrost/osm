@@ -21,9 +21,6 @@ int length(QNode* queue){
     } while(temp != queue);
     
     return sum;
-/*
-    return sum(queue,&const_one);
-*/
 } 
 
 /* add element at rear end */
@@ -50,18 +47,6 @@ Data dequeue(QNode** queue){
         printf("Queue is empty.\n");
         return NULL;
     }
-/*
-    if(*queue == (*queue)->link){
-        tempdata = (*queue)->content;
-        free(*queue);
-        *queue = NULL; 
-    } else {
-        temp = (*queue)->link;
-        (*queue)->link = temp->link; 
-        tempdata = temp->content;
-        free(temp);
-    }
-*/
 
     temp = (*queue)->link;
     tempdata = temp->content;
@@ -90,9 +75,3 @@ int sum(QNode* queue, int (*val)(Data)){
     
     return sum;
 }
-
-/*
-static int const_one (Data d){
-    return 1;
-} 
-*/
